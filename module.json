@@ -1,0 +1,35 @@
+{
+	"id": "pf2e-token-hands",
+	"title": "Token Hands for PF2e 👋",
+	"description": "A visual set of hands on screen, wich shows wich item every token is equipping on their hands.",
+	"version": "This is auto replaced",
+	"manifest": "This is auto replaced",
+	"download": "This is auto replaced",
+	"url": "This is auto replaced",
+	"readme": "This is auto replaced",
+	"bugs": "This is auto replaced",
+	"authors": [
+		{
+			"name": "Mad Wizard",
+			"discord": "mad.wizard"
+		}
+	],
+	"compatibility": {
+		"minimum": 11,
+		"verified": 11
+	},
+	"esmodules": ["main.js"],
+	"styles": ["style.css"],
+	"relationships": {
+		"systems": [
+			{
+				"id": "pf2e",
+				"type": "system",
+				"compatibility": {
+					"verified": "5.13.2"
+				}
+			}
+		]
+	},
+	"manifestPlusVersion": "1.2.0"
+}

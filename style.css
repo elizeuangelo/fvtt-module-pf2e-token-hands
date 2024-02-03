@@ -1,0 +1,31 @@
+#token-hands {
+	position: absolute;
+	width: 120px;
+	height: 60px;
+	display: flex;
+	gap: 0.5rem;
+}
+
+#token-hands > div {
+	width: 60px;
+	height: 60px;
+	border-radius: 0.5rem;
+	background: var(--color-border-dark-5);
+	background: url(/icons/skills/social/wave-halt-stop.webp), #2c1e1ec9;
+	background-size: cover;
+	border: 2px solid var(--color-border-dark);
+	box-shadow: 2px 4px 6px black;
+	background-blend-mode: luminosity;
+}
+
+#token-hands > div:not(.empty) {
+	cursor: pointer;
+}
+
+#token-hands > div:hover {
+	background-blend-mode: normal;
+}
+
+#token-left-hand {
+	transform: scaleX(-1);
+}
