@@ -55,27 +55,26 @@ let button = null,
 export async function createScreenButton() {
 	button?.remove();
 	const pos = getSetting('buttonPosition');
-	const element = (button = $(/*html*/ `
+	button = $(/*html*/ `
         <div id="token-hands" style="right: ${pos.right}px; top: ${pos.top}px;">
             <div id="token-left-hand"></div>
             <div id="token-right-hand"></div>
-        </div>`));
+        </div>`);
 
-	leftHandEl = element.find('#token-left-hand');
-	rightHandEl = element.find('#token-right-hand');
-
-	element.on('pointerdown', (ev) => {
-		if (ev.button !== 1) return;
-		document.body.addEventListener('pointermove', handleDragStart);
-		element.on('pointerup', handleDragEnd);
-	});
-
-	document.body.insertAdjacentElement('beforeend', element[0]);
+	document.body.insertAdjacentElement('beforeend', button[0]);
 	offset = {
 		x: button[0].clientWidth / 2,
 		y: button[0].clientHeight / 2,
 	};
 
+	leftHandEl = button.find('#token-left-hand');
+	rightHandEl = button.find('#token-right-hand');
+
+	button.on('pointerdown', (ev) => {
+		if (ev.button !== 1) return;
+		document.body.addEventListener('pointermove', handleDragStart);
+		button.on('pointerup', handleDragEnd);
+	});
 	button.on('drop', handleDrop);
 	button.on('click', (ev) => {
 		if (ev.button !== 0) return;
@@ -128,6 +127,7 @@ async function updateButton(token, controlled) {
 	rightHandEl[0].dataset.tooltip = rightHand?.name || 'Empty';
 }
 
+// -------------------- //
 Hooks.once('ready', createScreenButton);
 Hooks.on('controlToken', updateButton);
 Hooks.on('updateActor', (actor, changes) => {

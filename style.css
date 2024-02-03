@@ -1,14 +1,15 @@
 #token-hands {
+	--size: 60px;
 	position: absolute;
-	width: 120px;
-	height: 60px;
+	width: calc(2 * var(--size));
+	height: var(--size);
 	display: flex;
 	gap: 0.5rem;
 }
 
 #token-hands > div {
-	width: 60px;
-	height: 60px;
+	width: var(--size);
+	height: var(--size);
 	border-radius: 0.5rem;
 	background: var(--color-border-dark-5);
 	background: url(/icons/skills/social/wave-halt-stop.webp), #2c1e1ec9;
