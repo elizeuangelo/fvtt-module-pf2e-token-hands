@@ -121,8 +121,8 @@ async function updateButton(token, controlled) {
 	leftHandEl[0].classList.toggle('empty', !leftHand);
 	rightHandEl[0].classList.toggle('empty', !rightHand);
 
-	leftHandEl[0].style.backgroundImage = leftHand?.img ? `url(${leftHand.img})` : '';
-	rightHandEl[0].style.backgroundImage = rightHand?.img ? `url(${rightHand.img})` : '';
+	leftHandEl[0].style.backgroundImage = leftHand?.img ? `url("${leftHand.img}")` : '';
+	rightHandEl[0].style.backgroundImage = rightHand?.img ? `url("${rightHand.img}")` : '';
 
 	leftHandEl[0].dataset.tooltip = leftHand?.name || 'Empty';
 	rightHandEl[0].dataset.tooltip = rightHand?.name || 'Empty';
