@@ -24,10 +24,10 @@ jobs:
                   version: ${{steps.get_version.outputs.version-without-v}}
                   url: https://github.com/${{github.repository}}
                   bugs: https://github.com/${{github.repository}}/issues
-                  license: https://raw.githubusercontent.com/${{github.repository}}/${{github.event.release.tag_name}}/LICENSE
-                  readme: https://raw.githubusercontent.com/${{github.repository}}/${{github.event.release.tag_name}}/README.md
+                  license: https://raw.githubusercontent.com/${{github.repository}}/${{steps.get_version.outputs.version}}/LICENSE
+                  readme: https://raw.githubusercontent.com/${{github.repository}}/${{steps.get_version.outputs.version}}/README.md
                   manifest: https://github.com/${{github.repository}}/releases/latest/download/module.json
-                  download: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip
+                  download: https://github.com/${{github.repository}}/releases/download/${{steps.get_version.outputs.version}}/module.zip
 
             - name: Create module.zip
               run: zip -r module * -x ".github/*" "assets/*" "*.md" "*.ts" "tsconfig.json"
