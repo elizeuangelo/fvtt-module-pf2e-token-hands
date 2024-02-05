@@ -92,6 +92,7 @@ export async function createScreenButton() {
 	updateButton();
 }
 
+let fading = null;
 /**
  * Updates the button based on the provided token and controlled status.
  * @param {Token} token - The token to update the button for.
@@ -103,14 +104,14 @@ async function updateButton(token, controlled) {
 	if (controlled === false || !token) {
 		button.fadeOut();
 		activeToken = null;
-		await sleep(400);
+		fading = sleep(400);
+		await fading;
 		$(leftHandEl, rightHandEl).addClass('empty');
 		return;
 	}
 	activeToken = token;
 	if (!token.actor) return;
-	button.fadeIn();
-	await sleep(400);
+	await fading;
 
 	leftHand = await fromUuid(token.actor.getFlag('pf2e-token-hands', 'left-hand'));
 	rightHand = await fromUuid(token.actor.getFlag('pf2e-token-hands', 'right-hand'));
@@ -123,6 +124,8 @@ async function updateButton(token, controlled) {
 
 	leftHandEl[0].dataset.tooltip = leftHand?.name || 'Empty';
 	rightHandEl[0].dataset.tooltip = rightHand?.name || 'Empty';
+
+	button.fadeIn();
 }
 
 // -------------------- //
