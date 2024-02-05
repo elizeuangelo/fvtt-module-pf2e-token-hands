@@ -40,8 +40,7 @@ async function handleDrop(ev) {
 	const item = await fromUuid(data.uuid);
 	if (hand === 'left-hand') leftHand = item;
 	else rightHand = item;
-	await actor.setFlag('pf2e-token-hands', hand, data.uuid);
-	updateButton(activeToken, true);
+	actor.setFlag('pf2e-token-hands', hand, data.uuid);
 }
 
 let button = null,
@@ -87,8 +86,7 @@ export async function createScreenButton() {
 		const hand = ev.target.id === 'token-left-hand' ? 'left-hand' : 'right-hand';
 		if (hand === 'left-hand') leftHand = null;
 		else rightHand = null;
-		await activeToken.actor.unsetFlag('pf2e-token-hands', hand);
-		updateButton(activeToken, true);
+		activeToken.actor.setFlag('pf2e-token-hands', hand, '');
 	});
 
 	updateButton();
@@ -131,6 +129,6 @@ async function updateButton(token, controlled) {
 Hooks.once('ready', createScreenButton);
 Hooks.on('controlToken', updateButton);
 Hooks.on('updateActor', (actor, changes) => {
-	if (actor !== game.user.character || !('flags' in changes)) return;
-	updateButton();
+	if (!('flags' in changes) || activeToken.actor !== actor) return;
+	updateButton(activeToken, true);
 });
